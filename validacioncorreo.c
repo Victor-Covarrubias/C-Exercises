@@ -1,10 +1,5 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
-#include <ctype.h>
-#include <math.h>
-#include <windows.h>
-#include <conio.h>
 
 int main(){
 	char email[30]="";   //5 caracteres @ 5 caracteres . com

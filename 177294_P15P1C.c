@@ -4,14 +4,15 @@
 #include <conio.h>
 #include <string.h>
 #include <time.h>
- void gotoxy(int x,int y){//funcion gotoxy para imprimir cosas en coordenadas especificas
- HANDLE hcon;
- hcon = GetStdHandle(STD_OUTPUT_HANDLE);
- COORD dwPos;
- dwPos.X = x;
- dwPos.Y= y;
- SetConsoleCursorPosition(hcon,dwPos);
- } 
+
+void gotoxy(int x,int y){//funcion gotoxy para imprimir cosas en coordenadas especificas
+	HANDLE hcon;
+	hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD dwPos;
+	dwPos.X = x;
+	dwPos.Y= y;
+	SetConsoleCursorPosition(hcon,dwPos);
+} 
  
 void llenararreglo(float arreglo[][5]); //prototipo de la funcion que sirve para ser llamada
 void imprimirarreglo(float arreglo[][5], char marcas[][10]);//prototipo de la funcion que sirve para ser llamada
@@ -34,6 +35,7 @@ int main(){//inicio de la funcion normal
 	porPresentacion(arreglo, presentacion, marcas);
 	unLitro(arreglo, marcas);
 	porProducto(arreglo, marcas);
+
 	return 0;
 }
  
@@ -70,78 +72,8 @@ void imprimirarreglo(float arreglo[][5], char marcas[][10]){//funcion para impri
 		}
 		printf("\n");// salto de linea
 	}
-	/*
-	//lineas horizontales
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,8);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,10);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,12);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,14);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,16);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,18);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,20);
-		printf("%c", 196);
-	}
-	//lineas verticales
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(22,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(30,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(38,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(46,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(54,9+i);
-		printf("%c", 186);
-	}
-	getch();
-	*/
-	
 }
+
 void porPresentacion(float arreglo[][5], char presentacion[], char marcas[][10]){
 	if(strcmp(presentacion, "LATA")==0){//se checa si la presentacion coincide con este string se regresa el cero si c ve que es real la igualdad
 		float mayor= arreglo[0][0];//se iguala un valor a mayor para tenerlo como comparacion
@@ -224,35 +156,33 @@ void porPresentacion(float arreglo[][5], char presentacion[], char marcas[][10])
 void unLitro(float arreglo[][5], char marcas[][10]){
 	float mayor= arreglo[0][3];//igual que antes se le concede a un numero el mayor
 	float segundomayor=0;//variable para el segundo mayor
-	int y;
+	int posiciones[5] = {0};
+
 	for(int i=0; i<5;i++){
 		if(arreglo[i][3] > mayor){
 			mayor=arreglo[i][3];
 		}
 	}
 	printf("\n\nPRESENTACION DE 1 LITRO: \n");//se imprime Presentacion de 1 Litro:
+	printf("Mayor precio: \n");
 	for(int i=0; i<5;i++){
 		if(arreglo[i][3] == mayor){
+			//guardar las posiciones de los mayores precios
+			posiciones[i] = 1;
 			printf("%s\n", marcas[i]);// se imprime la marca que esta en la misma fila que el mayor
-			y=i;//se usa otra variable la cual se iguala a el numero de fila de el mayor
 		}
 	}
-	for(int i=0; i<5; i++){//se recorre un ciclo for para igualar sel segundo mayor a un numero igual que al principio con el mayor
-		if(y!=i){//para hacer la igualacion el numero debe ser diferente a mayor
-			segundomayor=arreglo[i][3];//se iguala
-		}
-	}
+	printf("\nSegundo Mayor precio: \n");
 	for(int i=0; i<5; i++){
-		if(arreglo[i][3] > segundomayor){//se checa fila por fila otraves si en otra fila hay un numero mayor a el segundomayor
-			if(y!=i){//pero como el segundo mayor seria menor al mayor quitamos la posibilidad de darle ese puesto a el mayor 
-				segundomayor=arreglo[i][3];
+		if(posiciones[i] == 0){
+			if(segundomayor == 0 || arreglo[i][3] > segundomayor){//se checa fila por fila otraves si en otra fila hay un numero mayor a el segundomayor
+				segundomayor = arreglo[i][3];
 			}
 		}
 	}
 	for(int i=0; i<5;i++){
-		if(arreglo[i][3] == segundomayor){//se checa fila por fila el numero de fila de el segundo mayor
-			printf("%s", marcas[i]);//al momento de encontrar el segundomayor se imprime la marca que esta en la misma fila que el
-			y=i;
+		if(posiciones[i] == 0 && arreglo[i][3] == segundomayor){//se checa fila por fila el numero de fila de el segundo mayor
+			printf("%s\n", marcas[i]);//al momento de encontrar el segundomayor se imprime la marca que esta en la misma fila que el
 		}
 	}
 	

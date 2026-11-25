@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <string.h>
-#include <stdlib.h>
 #include <ctype.h>
-#include <math.h>
-#include <windows.h>
-#include <conio.h>
+#include <stdbool.h>
 
 int main(){
 	char curp[19]="";
@@ -17,20 +14,21 @@ int main(){
 	
 	
 	do{
-		printf("Dame tu curp:");
-		fflush(stdin);
+		printf("Escribe la curp para validarla:");
 		scanf("%s", curp);
 		cont1=0;
 		cont2=0;
 		cont3=0;
 		cont4=0;
 		if(strlen(curp)>18){
+			printf("La curp es muy larga\n");
 			continue;
 		}else{
 			for(i=0; i<4; i++){
 				if(isalpha(curp[i])){
 					cont1++;
 				}else{
+					printf("Los primeros 4 caracteres deben ser letras\n");
 					continue;
 				}
 			}
@@ -38,6 +36,7 @@ int main(){
 				if(isdigit(curp[i])){
 					cont2++;
 				}else{
+					printf("La segunda seccion de la curp empieza en el caracter 5 y debe contener 6 digitos\n");
 					continue;
 				}
 			}
@@ -45,25 +44,26 @@ int main(){
 				if(isalpha(curp[i])){
 					cont3++;
 				}else{
+					printf("La tercera seccion de la curp empieza en el caracter 11 y debe contener 6 letras\n");
 					continue;
 				}
 			}
-			for(i=16; i<18; i++){
-				if(isdigit(curp[i])){
-					cont4++;
-				}else{
-					continue;
-				}
+			if(isdigit(curp[16]) || isalpha(curp[16])){
+				cont4++;
+			}else{
+				continue;
+			}
+			if(isdigit(curp[17])){
+				cont4++;
+			}else{
+				continue;
 			}
 		}
 		if(cont1==4 && cont2==6 && cont3==6 && cont4==2){
 			control=false;
 		}
 	}while(control);
-	printf("\n%d", cont1);
-	printf("\n%d", cont2);
-	printf("\n%d", cont3);
-	printf("\n%d", cont4);
+	printf("\ncurp valida :)\n");
 	printf("\n%s", curp);
 	return 0;
 }

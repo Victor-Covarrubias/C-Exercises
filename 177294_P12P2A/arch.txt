@@ -1,0 +1,4 @@
+car vehicle 25000.00
+bottle recipient 25.00
+smartphone device 6000.00
+keyboard peripheral 300.00

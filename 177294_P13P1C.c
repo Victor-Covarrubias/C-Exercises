@@ -3,14 +3,14 @@
 #include <windows.h>
 #include <conio.h>
 #include <string.h>
- void gotoxy(int x,int y){//funcion gotoxy para imprimir cosas en coordenadas especificas
- HANDLE hcon;
- hcon = GetStdHandle(STD_OUTPUT_HANDLE);
- COORD dwPos;
- dwPos.X = x;
- dwPos.Y= y;
- SetConsoleCursorPosition(hcon,dwPos);
- } 
+void gotoxy(int x,int y){//funcion gotoxy para imprimir cosas en coordenadas especificas
+	HANDLE hcon;
+	hcon = GetStdHandle(STD_OUTPUT_HANDLE);
+	COORD dwPos;
+	dwPos.X = x;
+	dwPos.Y= y;
+	SetConsoleCursorPosition(hcon,dwPos);
+} 
  
 void llenararreglo(float arreglo[][5]); //prototipo de la funcion que sirve para ser llamada
 void imprimirarreglo(float arreglo[][5], char marcas[][10]);//prototipo de la funcion que sirve para ser llamada
@@ -25,7 +25,7 @@ int main(){//inicio de la funcion normal
 	char marcas[6][10]={"COCA\t","PEPSI\t","FANTA\t","SANGRIA\t","SPRITE\t","MIRINDA\t"};//areglo para imprimir las marcas
 	
 	encabezado();//impresion de mis datos
-	llenararreglo(arreglo);//se envia el arreglo ala funcion llenar arreglo
+	llenararreglo(arreglo);//se envia el arreglo a la funcion llenar arreglo
 	imprimirarreglo(arreglo, marcas);//se envia el arreglo ala funcion imprimir arreglo
 	printf("\nINSERTE CUAL PRESENTACION DESEA CONSULTAR: ");
 	scanf("%s", presentacion);
@@ -68,78 +68,8 @@ void imprimirarreglo(float arreglo[][5], char marcas[][10]){//funcion para impri
 		}
 		printf("\n");// salto de linea
 	}
-	/*
-	//lineas horizontales
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,8);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,10);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,12);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,14);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,16);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,18);
-		printf("%c", 196);
-	}
-	for(int i=0;i<40;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14+i,20);
-		printf("%c", 196);
-	}
-	//lineas verticales
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(14,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(22,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(30,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(38,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(46,9+i);
-		printf("%c", 186);
-	}
-	for(int i=0;i<12;i++){
-		SetConsoleTextAttribute(hd, 14); 
-	    gotoxy(54,9+i);
-		printf("%c", 186);
-	}
-	getch();
-	*/
-	
 }
+
 void porPresentacion(float arreglo[][5], char presentacion[], char marcas[][10]){
 	if(strcmp(presentacion, "LATA")==0){//se checa si la presentacion coincide con este string se regresa el cero si c ve que es real la igualdad
 		float mayor= arreglo[0][0];//se iguala un valor a mayor para tenerlo como comparacion

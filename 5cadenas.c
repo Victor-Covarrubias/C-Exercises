@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <string.h>
-main(){
+int main(){
 	//arreglo para 5 cadenas, 3 cadenas estaran predefinidas, las ultimas dos seran solicitadas
 	printf("Victor Alfonso Covarrubias Solis, 177294\n");
 	char cadenas[5][15]={"hola", "como estas", "adios"};

@@ -2,14 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h>
-#include <string.h>
 #include <time.h>
 
 //estructura para guardar los datos de los almnos
 typedef struct{
- char nom_al[20];//nombre del inscrito
- int edad;//edad del inscrito
- int id_al;//id unico para el inscrito
+	char nom_al[20];//nombre del inscrito
+	int edad;//edad del inscrito
+	int id_al;//id unico para el inscrito
 }TipoAl; 
 
 //funciones
@@ -23,7 +22,7 @@ int aux1[3]={0};
 int aux2[3]={0};
 int aux3[3]={0};
 
-main(){//funcion principal
+int main(){//funcion principal
 	srand(time(NULL));//inicializar la semilla
 	char clases[5][15]={{"PROGRAMACION"},{"ELECTRONICA"},{"ARTES"}};//array con los nombres de los grupos que usaran en el codigo los reduje ya que solo se usaran 3
 	TipoAl array[3][3];//creacion de array de 3 x 3 para el registro de los datos en la estructura
@@ -33,9 +32,11 @@ main(){//funcion principal
 	
 	return 0;
 }
+
 void encabezado(){//cuerpo de la funcion encabezado
 	printf("Covarrubias Solis Victor Alfonso\n177294\nlaboratorio de Programacion 2\nGrupo A\n16/8/22\n----------------------------------\n\n");//impresion de datos
 }
+
 void capturaIns(TipoAl array[][3], char clases[][15]){//llenado de registros de los inscritos
 	int cn;//variable para guardar el numero de la clase
 	bool bandera=true;//variable para checar si el nombre es en verdad un nombre sin espacios
@@ -63,6 +64,7 @@ void capturaIns(TipoAl array[][3], char clases[][15]){//llenado de registros de 
 	}
 	
 }
+
 int generaID(TipoAl array[][3], int cn, int i){//generacion aleatoria de id dependiendo de la clase
 	int id, cont;
 	bool flag=true;
@@ -108,6 +110,7 @@ int generaID(TipoAl array[][3], int cn, int i){//generacion aleatoria de id depe
 	}while(flag==true);
 	return id;//se retorna el valor de la id
 }
+
 void impresionUno(TipoAl array[][3], char clases[][15]){
 	printf("Grupos creados: %d\n", 3);
 	for(int x=0;x<3;x++){//impresion de datos
